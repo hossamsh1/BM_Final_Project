@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BanqueMisr</string>
+
+    <string name="str_transfer">Transfer</string>
+    <string name="str_transaction">Transactions</string>
+    <string name="str_cards">Cards</string>
+    <string name="str_account">Account</string>
+
+
+</resources>
