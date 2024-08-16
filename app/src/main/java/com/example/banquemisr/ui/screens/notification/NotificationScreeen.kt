@@ -47,6 +47,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.banquemisr.R
 import com.example.banquemisr.screens.functionsusable.TextFormaterUSA
+import com.example.banquemisr.ui.screens.transferScreen.TransferAmount
+import com.example.bm_app.approutes.AppRoutes
+import com.example.bm_app.approutes.AppRoutes.SUCCESSFUL_TRANSACTIONSCREEN_ROUTE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -117,23 +120,79 @@ fun TransActionScreenScrol() {
 
         }
 
-        ListTransactionSuccessfulNotification()
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Mohamed"
+            ,transferAccount = "xx4589"
+            ,transferAmount = 40.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "khaled Gad"
+            ,transferAccount = "xx7854"
+            ,transferAmount = 80.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+        ListTransactionSuccessfulNotification(navController = rememberNavController()
+            , transferName = "Ahmed Tareq"
+            ,transferAccount = "xx1234"
+            ,transferAmount = 100.0)
+
+
+
     }
 }
 
 
 @Composable
-fun ListTransactionSuccessfulNotification() {
-
- var transferAmount by remember { mutableStateOf(0.0) }
- var transferDate by remember { mutableStateOf("") }
- var transferAccount by remember { mutableStateOf("xxx1234") }
- var transferName by remember { mutableStateOf("sarah shaaban") }
-
+fun ListTransactionSuccessfulNotification(navController: NavController,transferAmount:Double,transferAccount:String,transferName:String) {
 
     Card(modifier = Modifier
+        .clickable { navController.navigate("${SUCCESSFUL_TRANSACTIONSCREEN_ROUTE}") }
         .fillMaxWidth()
-        .padding(end = 16.dp, start = 16.dp, top = 16.dp, bottom = 10.dp)
+        .padding(end = 16.dp, start = 16.dp, top = 10.dp)
         .background(Color.White)) {
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -166,7 +225,7 @@ fun ListTransactionSuccessfulNotification() {
                 Text(
                     color = colorResource(id = R.color.Gray_G700),
                     fontWeight = FontWeight.Normal,
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     text = "You have received $transferAmount from $transferName $transferAccount"
                 )
                 Text(

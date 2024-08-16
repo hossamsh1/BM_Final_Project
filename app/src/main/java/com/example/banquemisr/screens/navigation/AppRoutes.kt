@@ -33,7 +33,7 @@ import com.example.banquemisr.ui.screens.moreScreen.MoreScreen
 import com.example.banquemisr.ui.screens.notification.NotificationScreen
 import com.example.banquemisr.ui.screens.profileInformationScreen.ProfileInformationScreen
 import com.example.banquemisr.ui.screens.profileScreen.ProfileScreen
-import com.example.banquemisr.ui.screens.transactionScreen.SuccessfulTransactionScreen
+import com.example.banquemisr.ui.screens.transactionScreen.SuccessfulTransactionScreenRote
 import com.example.banquemisr.ui.screens.transactionScreen.TransActionScreen
 import com.example.banquemisr.ui.screens.transferScreen.TransferAmountScreen
 import com.example.banquemisr.ui.screens.transferScreen.TransferConfirmationScreen
@@ -54,7 +54,7 @@ import com.example.bm_app.approutes.AppRoutes.SELECT_CURRENCY_ROUTE
 import com.example.bm_app.approutes.AppRoutes.SIGNIN_ROUTE
 import com.example.bm_app.approutes.AppRoutes.SIGN_UP_COMPLETE_ROUTE
 import com.example.bm_app.approutes.AppRoutes.SPLASH_ROUTE
-import com.example.bm_app.approutes.AppRoutes.SUCCESSFUL_TRANSACTION_ROUTE
+import com.example.bm_app.approutes.AppRoutes.SUCCESSFUL_TRANSACTIONSCREEN_ROUTE
 import com.example.bm_app.approutes.AppRoutes.Setting_Route
 import com.example.bm_app.approutes.AppRoutes.TRANSACTION_ROUTE
 import com.example.bm_app.approutes.AppRoutes.TRANSFERAMOUNT_ROUTE
@@ -72,7 +72,7 @@ object AppRoutes {
     const val TRANSACTION_ROUTE = "transaction"
     const val CARD_ROUTE = "card"
     const val MORE_ROUTE = "more"
-    const val SUCCESSFUL_TRANSACTION_ROUTE = "successfulTransaction"
+    const val SUCCESSFUL_TRANSACTIONSCREEN_ROUTE = "successfulTransaction"
 
     const val ADD_CARD_ROUTE = "addCard"
     const val ACCOUNT_CONNECTED_ROUTE = "accountConnected"
@@ -88,7 +88,6 @@ object AppRoutes {
     // const val FIELD_TRANSACTION_ROUTE = "fieldTransaction"
 
     const val NOTIFICATION_ROUTE = "notification"
-    const val SUCCESFUL_TRANSACTION_ROUTE = "successfulTransaction"
     const val FAVORITSCREEN = "favorit"
 
 }
@@ -155,6 +154,9 @@ fun AppNavHost() {
             composable(route = HOME_ROUTE) {
                 HomeScreen(navController, viewModel = viewModel())
             }
+            composable(route = SUCCESSFUL_TRANSACTIONSCREEN_ROUTE) {
+                SuccessfulTransactionScreenRote(navController = navController)
+            }
             composable(route = TRANSFERAMOUNT_ROUTE) { TransferAmountScreen(navController) }
             composable(route = TRANSACTION_ROUTE) {
                 TransActionScreen(navController = navController)
@@ -165,9 +167,7 @@ fun AppNavHost() {
             composable(route = MORE_ROUTE) {
                 MoreScreen(navController)
             }
-            composable(route = SUCCESSFUL_TRANSACTION_ROUTE) {
-                SuccessfulTransactionScreen(navController = navController)
-            }
+
             composable(route = Profile_Rute) {
                 ProfileScreen(navController = navController)
             }
@@ -225,9 +225,6 @@ fun AppNavHost() {
             }
             composable(route = AppRoutes.NOTIFICATION_ROUTE) {
                 NotificationScreen(navController)
-            }
-            composable(route = AppRoutes.SUCCESFUL_TRANSACTION_ROUTE) {
-                SuccessfulTransactionScreen(navController)
             }
             composable(route = Change_Password_Route){
                 ChangePasswordScreen(navController = navController)

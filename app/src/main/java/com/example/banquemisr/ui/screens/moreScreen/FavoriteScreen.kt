@@ -2,17 +2,22 @@ package com.example.banquemisr.ui.screens.moreScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,58 +61,16 @@ Row (modifier = Modifier
             .align(Alignment.CenterVertically)
         ,text = "Your favorites Screen"
     , fontSize =20.sp
+        , fontWeight = FontWeight.Bold
     , color = colorResource(id = R.color.Gray_G900))
 }
-        Card(modifier = Modifier
-            .fillMaxWidth()
-            .padding(end = 16.dp, start = 16.dp, top = 16.dp, bottom = 10.dp)
-            .background(Color.White)) {
-            Row(modifier = Modifier
-                .wrapContentSize()
-                .padding(end = 16.dp, start = 16.dp, top = 16.dp))
-            {
 
-                Box(
-                    modifier = Modifier
-                        .padding(top = 5.dp, start = 8.dp, bottom = 5.dp)
-                        .size(48.dp)
-                        .background(Color.LightGray, shape = CircleShape)
-                        .clip(CircleShape)
-                ) {
-                    Icon(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .align(Alignment.Center),
-                        painter = painterResource(id = R.drawable.icon_banque),
-                        contentDescription = null
-                    )
-                }
+FavoritCard(recipientName = "Mohamed Ahmed", recipientAccount = "xxx12345")
+FavoritCard(recipientName = "Younes", recipientAccount = "xxx45647")
+FavoritCard(recipientName = "Ahmed tareq", recipientAccount = "xxx89745")
+FavoritCard(recipientName = "Ahmed bahgat", recipientAccount = "xxx87946")
 
-                Column(
-                    modifier = Modifier.padding(
-                        start = 20.dp,
-                        top = 5.dp,
-                        bottom = 5.dp
-                    )
-                ) {
 
-                    Text(
-                        color = colorResource(id = R.color.Gray_G900),
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        text = "Receive Transaction"
-                    )
-                    Spacer(modifier = Modifier.padding(8.dp))
-                    Text(
-                        fontSize = 16.sp,
-                        color = colorResource(id = R.color.Gray_G100),
-                        text = "Today 11:00 - Received"
-                    )
-
-                }
-            }
-            Spacer(modifier = Modifier.padding(5.dp))
-        }
     }
 }
 
@@ -117,4 +80,75 @@ Row (modifier = Modifier
 fun FavoritesScreenPreview() {
     val navController = rememberNavController()
     FavoritesScreen(navController = navController)
+}
+
+
+
+@Composable
+fun FavoritCard(recipientName:String , recipientAccount:String){
+    Card (modifier = Modifier
+        .fillMaxWidth()
+        .padding(end = 16.dp, start = 16.dp, top = 16.dp, bottom = 5.dp)
+        .height(88.dp)
+        .background(Color.White)
+    ){
+        Row (modifier = Modifier
+            .fillMaxSize()){
+
+            Box(
+                modifier = Modifier
+                    .padding(top = 20.dp, start = 12.dp, bottom = 5.dp)
+                    .size(48.dp)
+                    .background(Color.LightGray, shape = CircleShape)
+                    .clip(CircleShape)
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .align(Alignment.Center),
+                    painter = painterResource(id = R.drawable.icon_banque),
+                    contentDescription = null
+                )
+            }
+
+            Column(
+                modifier = Modifier.padding(
+                    start = 20.dp,
+                    top = 15.dp,
+                    bottom = 5.dp
+                )
+            ) {
+
+                Text(
+                    color = colorResource(id = R.color.Gray_G900),
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    text = recipientName
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Text(
+                    fontSize = 16.sp,
+                    color = colorResource(id = R.color.Gray_G100),
+                    text = "Account $recipientAccount"
+                )
+            }
+            Spacer(modifier = Modifier.padding(40.dp))
+            Row (modifier = Modifier.align(Alignment.CenterVertically)){
+                Image(modifier = Modifier
+                    .clickable { }
+                    .size(24.dp)
+                    ,painter = painterResource(id = R.drawable.edit)
+                    , contentDescription =null )
+                Spacer(modifier = Modifier.padding(5.dp))
+                Image(modifier = Modifier
+                    .clickable { }
+                    .size(24.dp)
+                    ,painter = painterResource(id = R.drawable.delete)
+                    , contentDescription =null )
+
+            }
+
+        }
+
+    }
 }

@@ -36,11 +36,21 @@ fun ProfileInformationScreen(navController: NavController) {
         val context = LocalContext.current
         val preferencesHelper = remember { PreferencesHelper(context) }
         ScreenHeader("Profile Information", onClick = {navController.popBackStack()})
-        ProfileData("Full Name",preferencesHelper.getFullName())
-        ProfileData("Email",preferencesHelper.getEmail())
-        ProfileData("Date of Birth",preferencesHelper.getBirthDate())
-        ProfileData("Country",preferencesHelper.getCountry())
-        ProfileData("Bank Account",)
+        ProfileData("Full Name"
+            ,
+            //preferencesHelper.getFullName()
+             "Hossam Shaaban")
+        ProfileData("Email",
+            //preferencesHelper.getEmail()
+            "hossam@gmail.com" )
+        ProfileData("Date of Birth",
+            //preferencesHelper.getBirthDate()
+            "10/6/2003" )
+        ProfileData("Country",
+            //preferencesHelper.getCountry()
+            "United States" )
+        ProfileData("Bank Account"
+            ,"xx1234")
     }
 
 }

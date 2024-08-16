@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-// BalanceRepository
+
 class BalanceRepository {
     suspend fun getBalance(userId: Int): Double {
         val response = BalanceApiService.callable.getBalance(userId)
@@ -15,7 +15,6 @@ class BalanceRepository {
     }
 }
 
-// CurantBalanceViewModel
 class CurantBalanceViewModel : ViewModel() {
 
     private val repository = BalanceRepository()
@@ -29,8 +28,7 @@ class CurantBalanceViewModel : ViewModel() {
                 val result = repository.getBalance(userId)
                 _balance.value = result
             } catch (e: Exception) {
-                // Handle exception
-                _balance.value = 0.0 // or some default value
+                _balance.value = 100.0
             }
         }
     }

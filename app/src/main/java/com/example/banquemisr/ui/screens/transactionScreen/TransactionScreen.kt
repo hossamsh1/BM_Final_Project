@@ -45,7 +45,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.example.banquemisr.R
 import com.example.banquemisr.screens.functionsusable.TextFormaterUSA
-import com.example.bm_app.approutes.AppRoutes.SUCCESSFUL_TRANSACTION_ROUTE
+import com.example.bm_app.approutes.AppRoutes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -121,14 +121,45 @@ fun TransActionScreen(navController: NavController) {
 
             }
 
-            ListTransactionSuccessful(navController = rememberNavController())
-            ListTransactionFaild()
+            ListTransactionSuccessful(navController = rememberNavController()
+            , recipientname = "Ahmed Tareq"
+            ,recipientAccount = "xx1234"
+            ,amount = 100.0)
+            ListTransactionFaild(recipientname = "Ahmed Mohamed"
+                , recipientAccount = "xx4589"
+            ,amount = 40.0)
+            ListTransactionSuccessful(navController = rememberNavController()
+            , recipientname = "Khaled Gad"
+            ,recipientAccount = "xx4654"
+            ,amount = 150.0)
+            ListTransactionFaild(recipientname = "youns"
+            , recipientAccount = "xx1234"
+            ,amount = 100.0)
+            ListTransactionSuccessful(navController = rememberNavController()
+            , recipientname = "Ahmed Mohamed"
+            ,recipientAccount = "xx7854"
+            ,amount = 200.0)
+            ListTransactionFaild( recipientname = "Ahmed Tareq"
+            , recipientAccount = "xx1234"
+            ,amount = 100.0)
+            ListTransactionSuccessful(navController = rememberNavController()
+            , recipientname = "Ahmed bahgat"
+            ,recipientAccount = "xx7865"
+            ,amount = 120.0)
+            ListTransactionFaild( recipientname = "Ahmed Mohamed"
+            , recipientAccount = "xx1234"
+            ,amount = 100.0)
+
+
+
         }
     }
 
 
         @Composable
-        fun ListTransactionSuccessful(navController: NavController) {
+        fun ListTransactionSuccessful(navController: NavController,recipientname:String
+                                       ,recipientAccount:String
+                                       ,amount:Double) {
 
             Card(modifier = Modifier
                 .fillMaxWidth()
@@ -160,13 +191,13 @@ fun TransActionScreen(navController: NavController) {
                                 color = colorResource(id = R.color.Gray_G900),
                                 fontWeight = FontWeight.Medium,
                                 fontSize = 20.sp,
-                                text = "hossam Shaban"
+                                text = recipientname
                             )
                             Text(
                                 color = colorResource(id = R.color.Gray_G700),
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 12.sp,
-                                text = "Visa . Mater Card . 1234"
+                                text = "Visa . Mater Card . $recipientAccount"
                             )
                             Text(
                                 fontSize = 16.sp,
@@ -177,7 +208,7 @@ fun TransActionScreen(navController: NavController) {
 Spacer(modifier = Modifier.padding(8.dp))
 
                             TextFormaterUSA(
-                                balance = 100.0,
+                                balance = amount,
                                 fontSize = 16, color = colorResource(id = R.color.Beige),
                                 fontWeight = FontWeight.Medium)
                         }
@@ -186,8 +217,9 @@ Spacer(modifier = Modifier.padding(8.dp))
                         .padding(start = 25.dp, top = 8.dp)) {
 
                         Image(modifier = Modifier
-                            .padding(start = 50.dp)
-                            .size(24.dp)
+                            .padding(start = 45.dp)
+                            .size(30.dp)
+                            .clickable { navController.navigate(AppRoutes.SUCCESSFUL_TRANSACTIONSCREEN_ROUTE) }
                             ,painter = painterResource(id = R.drawable.next)
                             , contentDescription = null)
 
@@ -205,7 +237,9 @@ Spacer(modifier = Modifier.padding(8.dp))
 
 
 @Composable
-fun ListTransactionFaild() {
+fun ListTransactionFaild(recipientname:String
+                         ,recipientAccount:String
+                         ,amount:Double) {
     Card(modifier = Modifier
         .fillMaxWidth()
         .padding(end = 16.dp, start = 16.dp, top = 16.dp, bottom = 10.dp)
@@ -236,13 +270,13 @@ fun ListTransactionFaild() {
                     color = colorResource(id = R.color.Gray_G900),
                     fontWeight = FontWeight.Medium,
                     fontSize = 20.sp,
-                    text = "hossam Shaban"
+                    text = recipientname
                 )
                 Text(
                     color = colorResource(id = R.color.Gray_G700),
                     fontWeight = FontWeight.Normal,
                     fontSize = 12.sp,
-                    text = "Visa . Mater Card . 1234"
+                    text = "Visa . Mater Card . $recipientAccount"
                 )
                 Text(
                     fontSize = 16.sp,
@@ -251,7 +285,7 @@ fun ListTransactionFaild() {
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
                 TextFormaterUSA(
-                    balance = 100.0,
+                    balance = amount,
                     fontSize = 16, color = colorResource(id = R.color.Beige),
                     fontWeight = FontWeight.Medium)
             }
@@ -261,7 +295,7 @@ fun ListTransactionFaild() {
 
                 Image(modifier = Modifier
                     .padding(start = 30.dp)
-                    .size(24.dp)
+                    .size(30.dp)
                     ,painter = painterResource(id = R.drawable.next)
                     , contentDescription = null)
 

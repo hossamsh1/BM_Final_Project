@@ -53,6 +53,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.banquemisr.R
 import com.example.banquemisr.screens.functionsusable.TextFormaterEGP
 import com.example.banquemisr.screens.functionsusable.TextFormaterUSA
+import com.example.banquemisr.ui.screens.notification.createNotificationChannel
+import com.example.banquemisr.ui.screens.notification.notificationContent
 import com.example.bm_app.approutes.AppRoutes.TRANSFERAMOUNT_ROUTE
 import com.example.bm_app.approutes.AppRoutes.TRANSFERCONFIRMATION_ROUTE
 import com.example.bm_app.approutes.AppRoutes.TRANSFERPAYMENT_ROUTE
@@ -243,6 +245,13 @@ Spacer(modifier = Modifier.padding(10.dp))
 
             FilledTonalButton(
                 onClick = {
+                    // Build and display the notification
+                    notificationContent(
+                        context=context,
+                        textTitle = "Transfer Successful",
+                        textContent = "You have successfully transferred $amount to $recipientName."
+                    )
+
                         val route =
                             "$TRANSFERPAYMENT_ROUTE/${amount}/${recipientName}/${recipientAccount}/${amountEgp}"
                         navController.navigate(route)

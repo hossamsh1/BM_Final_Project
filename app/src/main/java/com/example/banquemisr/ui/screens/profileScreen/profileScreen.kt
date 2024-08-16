@@ -32,6 +32,7 @@ import com.example.banquemisr.ui.screens.reusableUI.ScreenField
 import com.example.banquemisr.ui.screens.reusableUI.ScreenHeader
 import com.example.bm_app.approutes.AppRoutes.FAVORITSCREEN
 import com.example.bm_app.approutes.AppRoutes.MORE_ROUTE
+import com.example.bm_app.approutes.AppRoutes.NOTIFICATION_ROUTE
 import com.example.bm_app.approutes.AppRoutes.Profile_Information_Route
 import com.example.bm_app.approutes.AppRoutes.Setting_Route
 
@@ -64,7 +65,8 @@ fun ProfileScreen(navController: NavController) {
             "Change your settings",
             R.drawable.setting,
             onClick = { navController.navigate("$Setting_Route") })
-        ScreenField("Payment history", "View your transactions", R.drawable.bank_account)
+        ScreenField("Payment history", "View your transactions", R.drawable.bank_account,
+            onClick = {navController.navigate("$NOTIFICATION_ROUTE")})
         ScreenField("My favourite list", "View your favourites", R.drawable.star
         , onClick = {navController.navigate("$FAVORITSCREEN")})
 
@@ -95,11 +97,11 @@ fun ProfileName() {
                 .size(48.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "AD", fontWeight = FontWeight.Bold, fontSize = 20.sp, color = Color.Gray)
+            Text(text = "HS", fontWeight = FontWeight.Bold, fontSize = 20.sp, color = Color.Gray)
         }
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = "Asmaa Dosuky",
+            text = "Hossam Shaban",
             fontWeight = FontWeight.Bold,
             fontSize = 20.sp,
             color = Color.Black

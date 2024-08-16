@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
-fun ProfileData(headLine: String? = null, supportingText: String? = null) {
+fun ProfileData(headLine: String? = null, text:String) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .padding(16.dp)) {
@@ -29,7 +29,7 @@ fun ProfileData(headLine: String? = null, supportingText: String? = null) {
         )
 
         Text(
-            text = supportingText ?: "",
+            text = text,
             color = Color.Gray,
             fontSize = 17.sp,
             modifier = Modifier.padding(5.dp)

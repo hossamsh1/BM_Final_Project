@@ -1,6 +1,7 @@
 package com.example.banquemisr.screens.navigation
 
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -12,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,6 +23,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.banquemisr.R
 import com.example.banquemisr.ui.screens.transferScreen.TransferAmountScreen
 
 //@Composable
@@ -116,20 +119,23 @@ fun BottomNavigationBar(navController: NavController) {
                 BottomNavigationItem(
                     icon = {
                         Icon(
-                            modifier = Modifier.size(20.dp),
+                            modifier = Modifier
+                                .padding(top = 8.dp)
+                                .align(Alignment.CenterVertically)
+                                .size(30.dp),
                             painter = painterResource(
                                 id = if (isSelected) screen.selected_icon else screen.unselected_icon
                             ),
-                            tint = if (isSelected) Color.Red else Color.Gray,
+                            tint = if (isSelected) colorResource(id = R.color.Beige) else Color.Gray,
                             contentDescription = null
                         )
                     },
                     label = {
                         Text(
                             modifier = Modifier.align(Alignment.CenterVertically),
-                            fontSize = 7.sp,
+                            fontSize = 10.sp,
                             text = screen.title,
-                            color = if (isSelected) Color.Black else Color.Gray
+                            color = if (isSelected) colorResource(id = R.color.Beige) else Color.Gray
                         )
                     },
                     selected = isSelected,

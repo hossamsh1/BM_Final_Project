@@ -13,7 +13,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -39,11 +43,12 @@ import androidx.navigation.NavController
 import com.example.banquemisr.R
 import com.example.banquemisr.models.CurantBalanceViewModel
 import com.example.banquemisr.screens.functionsusable.TextFormaterUSA
+import com.example.banquemisr.screens.navigation.Screen
 import com.example.bm_app.approutes.AppRoutes
 
 
 @Composable
-fun HomeScreen(navController: NavController ,viewModel: CurantBalanceViewModel) {
+fun HomeScreen(navController: NavController, viewModel: CurantBalanceViewModel) {
 
     val balance = viewModel.balance.collectAsState().value
     LaunchedEffect(Unit) {
@@ -100,7 +105,7 @@ fun HomeScreen(navController: NavController ,viewModel: CurantBalanceViewModel) 
                     color = colorResource(id = R.color.Beige)
                 )
                 Text(
-                    text = "User name",
+                    text = "Hossam Shaban",
                     fontSize = 25.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
@@ -170,144 +175,146 @@ fun HomeScreen(navController: NavController ,viewModel: CurantBalanceViewModel) 
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, top = 15.dp)
         ) {
-            Column(modifier = Modifier.fillMaxWidth()
-            , horizontalAlignment = Alignment.CenterHorizontally
-            , verticalArrangement = Arrangement.Center) {
-
-            Text(
-                text = " Services ",
-                fontSize = 20.sp,
-                color = Color.Black,
-                fontWeight = FontWeight.Normal,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(top = 20.dp, bottom = 10.dp, start = 10.dp),
-            )
-
-            Row(
-                modifier = Modifier
-                    .padding(start = 15.dp, end = 8.dp, top = 20.dp, bottom = 25.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
 
-                Column()
-                {
-                    Card(
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .size(60.dp)
-                            .clickable { navController.navigate("transferAmount") },
-                        colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
-                    )
-                    {
-                        Image(
-                            alignment = Alignment.Center,
-                            painter = painterResource(id = R.drawable.icon_transfare),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(50.dp)
-                                .padding(top = 10.dp, start = 10.dp)
+                Text(
+                    text = " Services ",
+                    fontSize = 20.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .padding(top = 20.dp, bottom = 10.dp, start = 10.dp),
+                )
 
+                Row(
+                    modifier = Modifier
+                        .padding(start = 15.dp, end = 8.dp, top = 20.dp, bottom = 25.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Column()
+                    {
+                        Card(
+                            modifier = Modifier
+                                .align(Alignment.CenterHorizontally)
+                                .size(60.dp)
+                                .clickable { navController.navigate("transferAmount") },
+                            colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
+                        )
+                        {
+                            Image(
+                                alignment = Alignment.Center,
+                                painter = painterResource(id = R.drawable.icon_transfare),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(top = 10.dp, start = 10.dp)
+
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.padding(5.dp))
+
+                        Text(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = "Transfer"
                         )
                     }
 
-                    Spacer(modifier = Modifier.padding(5.dp))
-
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "Transfer"
-                    )
-                }
-
-                Column()
-                {
-                    Card(
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .size(60.dp)
-                            .clickable { navController.navigate("transaction") },
-                        colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
-                    )
+                    Column()
                     {
-                        Image(
-                            alignment = Alignment.Center,
-                            painter = painterResource(id = R.drawable.icon_transactions),
-                            contentDescription = "",
+                        Card(
                             modifier = Modifier
-                                .size(50.dp)
-                                .padding(top = 10.dp, start = 10.dp)
+                                .align(Alignment.CenterHorizontally)
+                                .size(60.dp)
+                                .clickable { navController.navigate("transaction") },
+                            colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
+                        )
+                        {
+                            Image(
+                                alignment = Alignment.Center,
+                                painter = painterResource(id = R.drawable.icon_transactions),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(top = 10.dp, start = 10.dp)
 
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.padding(5.dp))
+
+                        Text(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = "TransActions"
                         )
                     }
 
-                    Spacer(modifier = Modifier.padding(5.dp))
-
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "TransActions"
-                    )
-                }
-
-                Column()
-                {
-                    Card(
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .size(60.dp)
-                            .clickable { navController.navigate("card") },
-                        colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
-                    )
+                    Column()
                     {
-                        Image(
-                            alignment = Alignment.Center,
-                            painter = painterResource(id = R.drawable.icon_cards),
-                            contentDescription = "",
+                        Card(
                             modifier = Modifier
-                                .size(50.dp)
-                                .padding(top = 10.dp, start = 10.dp)
+                                .align(Alignment.CenterHorizontally)
+                                .size(60.dp)
+                                .clickable { navController.navigate("card") },
+                            colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
+                        )
+                        {
+                            Image(
+                                alignment = Alignment.Center,
+                                painter = painterResource(id = R.drawable.icon_cards),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(top = 10.dp, start = 10.dp)
 
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.padding(5.dp))
+
+                        Text(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = "Cards"
                         )
                     }
 
-                    Spacer(modifier = Modifier.padding(5.dp))
-
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "Cards"
-                    )
-                }
-
-                Column()
-                {
-                    Card(
-                        modifier = Modifier
-                            .align(Alignment.CenterHorizontally)
-                            .size(60.dp)
-                            .padding(start = 1.dp)
-                            .clickable { navController.navigate("more") },
-                        colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
-                    )
+                    Column()
                     {
-                        Image(
-                            alignment = Alignment.Center,
-                            painter = painterResource(id = R.drawable.icon_acount),
-                            contentDescription = "",
+                        Card(
                             modifier = Modifier
-                                .size(50.dp)
-                                .padding(top = 10.dp, start = 8.dp)
+                                .align(Alignment.CenterHorizontally)
+                                .size(60.dp)
+                                .padding(start = 1.dp)
+                                .clickable { navController.navigate("more") },
+                            colors = CardDefaults.cardColors(colorResource(id = R.color.light_gray))
+                        )
+                        {
+                            Image(
+                                alignment = Alignment.Center,
+                                painter = painterResource(id = R.drawable.icon_acount),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(50.dp)
+                                    .padding(top = 10.dp, start = 8.dp)
 
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.padding(5.dp))
+
+                        Text(
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                            text = "Account"
                         )
                     }
-
-                    Spacer(modifier = Modifier.padding(5.dp))
-
-                    Text(
-                        modifier = Modifier.align(Alignment.CenterHorizontally),
-                        text = "Account"
-                    )
                 }
-            }
 
             }
 
@@ -338,21 +345,84 @@ fun HomeScreen(navController: NavController ,viewModel: CurantBalanceViewModel) 
                     fontSize = 18.sp,
                     color = Color.Gray,
                     fontWeight = FontWeight.Normal,
-                    modifier = Modifier.align(Alignment.CenterVertically)
+                    modifier = Modifier
+                        .clickable { navController.navigate("transaction") }
+                        .align(Alignment.CenterVertically)
                 )
             }
         }
 
-        CardTransactions()
-
+        Column(
+            modifier = Modifier.padding(bottom = 20.dp)
+            .verticalScroll(rememberScrollState())
+        ){
+            CardTransactions(
+                recipientName = "Mohamed Ahmed",
+                recipientAccount = "xxx12345",
+                balance = 100.0
+            )
+            CardTransactions(
+                recipientName = "Younes",
+                recipientAccount = "xxx45647",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "Ahmed tareq",
+                recipientAccount = "xxx89745",
+                balance = 300.0
+            )
+            CardTransactions(
+                recipientName = "Ahmed bahgat",
+                recipientAccount = "xxx87946",
+                balance = 400.0
+            )
+            CardTransactions(
+                recipientName = "mohamed mostoghady",
+                recipientAccount = "xxx45564",
+                balance = 500.0
+            )
+            CardTransactions(
+                recipientName = "mohamed mahdy",
+                recipientAccount = "xxx4657",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "yousef ashraf",
+                recipientAccount = "xxx47894",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "taha abdo",
+                recipientAccount = "xxx7889",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "khaled atef",
+                recipientAccount = "xxx78465",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "ahmed adel",
+                recipientAccount = "xxx78456",
+                balance = 200.0
+            )
+            CardTransactions(
+                recipientName = "napil jabr",
+                recipientAccount = "xxx5362",
+                balance = 200.0
+            )
+        }
     }
-    }
+}
 
 
 @Preview(showBackground = true, device = "id:pixel_6a")
 @Composable
 fun GreetingPreview() {
-    HomeScreen(navController = NavController(LocalContext.current), viewModel = CurantBalanceViewModel())
+    HomeScreen(
+        navController = NavController(LocalContext.current),
+        viewModel = CurantBalanceViewModel()
+    )
 }
 
 @Composable
@@ -381,18 +451,20 @@ fun ImageWithTextHome(modifier: Modifier, clickable: () -> Unit, imageIcon: Int,
 
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = text)
+            text = text
+        )
     }
 }
 
 @Composable
-fun CardTransactions() {
+fun CardTransactions(recipientName: String, recipientAccount: String, balance: Double) {
+
     Card(
         colors = CardDefaults.elevatedCardColors(
             containerColor = Color.White
         ), modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp)
+            .padding(start = 20.dp, end = 20.dp, bottom = 8.dp)
     ) {
         Row {
             Box(modifier = Modifier.size(80.dp))
@@ -409,19 +481,18 @@ fun CardTransactions() {
 
             Column(modifier = Modifier.align(Alignment.CenterVertically)) {
                 Text(
-                    text = "Name",
+                    text = recipientName,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     color = Color.Black
                 )
                 Text(
-                    text = "Visa . Master Card . 12344",
+                    text = "Visa . Master Card . $recipientAccount",
                     fontSize = 12.sp,
                     color = Color.Black,
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier
                 )
-
                 Text(
                     text = "Today 11:00 - Received",
                     fontSize = 12.sp,
@@ -438,7 +509,7 @@ fun CardTransactions() {
             ) {
                 Text(
                     color = colorResource(id = R.color.Beige), modifier = Modifier
-                        .align(Alignment.Top), text = "$1000"
+                        .align(Alignment.Top), text = "$ $balance"
                 )
             }
         }

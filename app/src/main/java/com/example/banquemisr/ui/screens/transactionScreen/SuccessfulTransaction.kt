@@ -44,7 +44,7 @@ import com.example.banquemisr.screens.functionsusable.TextFormaterEGP
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SuccessfulTransactionScreen(navController: NavController) {
+fun SuccessfulTransactionScreenRote(navController: NavController) {
     val background = Brush.verticalGradient(
         listOf(colorResource(id = R.color.Greadient2), colorResource(id = R.color.Gredient)),
         startY = 2000f,
@@ -89,7 +89,7 @@ fun SuccessfulTransactionScreen(navController: NavController) {
                 .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
         ) {
-            TransactionScrol(navController = navController)
+            TransactionScrolScreen(navController = navController)
         }
     }
 }
@@ -97,7 +97,7 @@ fun SuccessfulTransactionScreen(navController: NavController) {
 
 
 @Composable
-fun TransactionScrol(navController: NavController) {
+fun TransactionScrolScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -262,5 +262,6 @@ Spacer(modifier = Modifier.padding(8.dp))
 @Preview
 @Composable
 fun TransferPaymentScreenPreview() {
-    SuccessfulTransactionScreen(navController = NavController(LocalContext.current))
+    val navController = NavController(LocalContext.current)
+    SuccessfulTransactionScreenRote(navController =navController)
 }
